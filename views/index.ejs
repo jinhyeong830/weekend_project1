@@ -52,28 +52,22 @@
 
   <script>
     const myModal = new bootstrap.Modal('#exampleModal');
-    // 도대체 콘솔로그는 어디 찍히는지..
-    console.log('얍');
     // popup이 아무것도 안가지고 있으면 보여주기 -> 쿠키가 만료되거나 생성되지 않은 상태라면 hide라는 쿠키가 없을 것
     if ('<%= popup%>' === '') myModal.show();
     /* if(< =popup%>!=='hide') myModal.show(); 와 같은 의미 */
     //  여기서 popup이라는 변수는 index.js에서
     //req.cookies로 popup이라는 변수 자체를 넘겨줬기 땜시 가능한 것
 
-    const checkbox = document.getElementById(cookie);
-
     function modalClose() {
       // 하루동안 보지 않기!!
-      if (checkbox.checked) {
+      if (document.getElementById('cookie').checked === true) {
         fetch('/cookie', {
           method: 'post',
           headers: {
             'Content-type': 'application/json',
           },
         })
-          .then((res) => {
-            console.log(res.data);
-          })
+          .then((res) => {})
           .catch((err) => {
             console.log(err);
           });

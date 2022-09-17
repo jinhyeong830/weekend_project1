@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
+  console.log(req.cookies.popup);
   res.render('index', { popup: req.cookies.popup });
   // post 방식으로 생성된 쿠키(이름이 popup인)객체를 담아서 index.ejs로 전달
 });
