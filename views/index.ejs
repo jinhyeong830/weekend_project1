@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>Document</title>
+    <%- include('./particle/head')%>
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
+  <body>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">event!!</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            쿠키 실습
+            <div class="text-end mt-3">
+              <input type="checkbox" id="cookie" />
+              <label for="cookie" style="cursor: pointer"
+                >오늘 하루 안보기</label
+              >
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" onclick="modalClose();">
+              닫기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <header><%- include('./particle/header')%></header>
+
+    <aside class="nav_bar">
+      <a href="/board" class="text-decoration-none">게시판</a>
+    </aside>
+    <footer><%-include('./particle/footer')%></footer>
+  </body>
+
+  <script>
+    const myModal = new bootstrap.Modal('#exampleModal');
+    // 도대체 콘솔로그는 어디 찍히는지..
+    console.log('얍');
+    // popup이 아무것도 안가지고 있으면 보여주기 -> 쿠키가 만료되거나 생성되지 않은 상태라면 hide라는 쿠키가 없을 것
+    if ('<%= popup%>' === '') myModal.show();
+    /* if(< =popup%>!=='hide') myModal.show(); 와 같은 의미 */
+    //  여기서 popup이라는 변수는 index.js에서
+    //req.cookies로 popup이라는 변수 자체를 넘겨줬기 땜시 가능한 것
+
+    const checkbox = document.getElementById(cookie);
+
+    function modalClose() {
+      // 하루동안 보지 않기!!
+      if (checkbox.checked) {
+        fetch('/cookie', {
+          method: 'post',
+          headers: {
+            'Content-type': 'application/json',
+          },
+        })
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+      //.hide()를 이용하면 단순 닫기가 실행됨
+      myModal.hide();
+    }
+  </script>
+</html>
