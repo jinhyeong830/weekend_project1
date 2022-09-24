@@ -35,11 +35,11 @@ app.use(express.static('public')); // static 폴더로는 public이라는 이름
 const router = require('./routes');
 const loginRouter = require('./routes/login');
 
-const boardRouter = require('./routes/board');
+const blogRouter = require('./routes/blog');
 const registerRouter = require('./routes/register');
 /* 5-2 라우팅*/
 app.use('/', router);
-app.use('/board', boardRouter);
+app.use('/blog', blogRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 
@@ -48,3 +48,4 @@ const PORT = 8000;
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });
+let a = 1;

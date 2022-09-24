@@ -1,8 +1,14 @@
 footer {
+  height: 80px;
   background-color: #4e4e59;
   color: whitesmoke;
+  margin: 0;
+  z-index: 1;
 }
-
+footer .footer_wrap {
+  height: 80px;
+  width: 100%;
+}
 .skill {
   padding-left: 15px;
 }

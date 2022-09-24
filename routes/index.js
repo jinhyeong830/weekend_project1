@@ -19,7 +19,7 @@ cookie have a data , data's name is 'hide'
 
 router.post('/cookie', (req, res) => {
   res.cookie('popup', 'hide', {
-    expires: new Date(Date.now() + 1000 * 60),
+    expires: new Date(Date.now() + 1000 * 60 * 60 * 3),
     httpOnly: true,
   });
   res.send('make a cookie');
